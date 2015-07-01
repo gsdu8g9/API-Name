@@ -11,8 +11,8 @@ SYNOPSIS
         use API::Name;
     
         my $name = API::Name->new(
-            apiuser    => 'APIUSER',
-            apitoken   => 'APITOKEN',
+            user       => 'USER',
+            token      => 'TOKEN',
             identifier => 'APPLICATION NAME',
         );
     
@@ -189,20 +189,20 @@ THIN CLIENT
 
 ATTRIBUTES
 
- apitoken
+ token
 
-        $name->apitoken;
-        $name->apitoken('APITOKEN');
+        $name->token;
+        $name->token('TOKEN');
 
-    The apitoken parameter should be set to the API token assigned to the
+    The token parameter should be set to the API token assigned to the
     account holder.
 
- apiuser
+ user
 
-        $name->apiuser;
-        $name->apiuser('APIUSER');
+        $name->user;
+        $name->user('USER');
 
-    The apiuser parameter should be set to the API apiuser assgined to the
+    The user parameter should be set to the API user assgined to the
     account holder.
 
  identifier

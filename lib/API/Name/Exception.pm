@@ -6,14 +6,13 @@ use Scalar::Util ();
 
 use API::Name::Class;
 
-use overload fallback => 1, '""' => 'to_string';
+use overload '""' => 'to_string', fallback => 1;
 
 # VERSION
 
-has 'code',   is => 'ro';
-has 'method', is => 'ro';
-has 'res',    is => 'ro';
-has 'url',    is => 'ro';
+has ['code', 'method', 'res', 'url'] => (
+    is => 'ro',
+);
 
 method caught ($e) {
     return ! Scalar::Util::blessed($e)
@@ -29,7 +28,7 @@ method rethrow {
     die $self;
 }
 
-fun throw ($class, %args) {
+method throw ($class: %args) {
     die $class->new(%args,
         subroutine => (caller(1))[3],
         package    => (caller(0))[0],

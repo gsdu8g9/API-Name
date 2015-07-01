@@ -1,16 +1,15 @@
 package API::Name::Class;
 
-use Extorter;
+use Import::Into;
 
 # VERSION
 
 sub import {
-    my $class  = shift;
     my $target = caller;
 
-    $class->extort::into($target, '*Data::Object::Class');
-    $class->extort::into($target, '*API::Name::Signature');
-    $class->extort::into($target, '*API::Name::Type');
+    Data::Object::Class->import::into($target);
+    Data::Object::Signatures->import::into($target);
+    Data::Object::Library->import::into($target => -types);
 
     return;
 }

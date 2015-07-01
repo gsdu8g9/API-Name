@@ -7,7 +7,7 @@ use 5.014002;
 use ExtUtils::MakeMaker;
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "Perl 5 API wrapper for Name",
+  "ABSTRACT" => "Perl 5 API wrapper for Name.com",
   "AUTHOR" => "Al Newkirk <anewkirk\@ana.io>",
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => 0
@@ -18,11 +18,11 @@ my %WriteMakefileArgs = (
   "MIN_PERL_VERSION" => "5.014002",
   "NAME" => "API::Name",
   "PREREQ_PM" => {
-    "Data::Object" => "0.17",
-    "Extorter" => "0.10",
-    "Function::Parameters" => "1.0603",
-    "Mojolicious" => "6.08",
-    "Type::Tiny" => "1.000005"
+    "Data::Object" => "0.20",
+    "Data::Object::Library" => "0.05",
+    "Data::Object::Signatures" => "0.03",
+    "Import::Into" => "1.002004",
+    "Mojolicious" => "6.08"
   },
   "VERSION" => "0.03",
   "test" => {
@@ -32,12 +32,12 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
-  "Data::Object" => "0.17",
+  "Data::Object" => "0.20",
+  "Data::Object::Library" => "0.05",
+  "Data::Object::Signatures" => "0.03",
   "ExtUtils::MakeMaker" => 0,
-  "Extorter" => "0.10",
-  "Function::Parameters" => "1.0603",
-  "Mojolicious" => "6.08",
-  "Type::Tiny" => "1.000005"
+  "Import::Into" => "1.002004",
+  "Mojolicious" => "6.08"
 );
 
 

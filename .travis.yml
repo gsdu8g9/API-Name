@@ -9,7 +9,7 @@ env:
     - "HARNESS_OPTIONS=j9"
 
 install:
-    - "cpanm -n --installdeps ."
+    - "cpanm -M https://cpan.metacpan.org -n --installdeps ."
 
 notifications:
     email: false

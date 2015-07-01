@@ -10,27 +10,27 @@ use Scalar::Util ();
 
 # VERSION
 
+has user => (
+    is       => 'rw',
+    isa      => Str,
+    required => 1,
+);
+
+has token => (
+    is       => 'rw',
+    isa      => Str,
+    required => 1,
+);
+
 has identifier => (
     is       => 'rw',
-    isa      => STRING,
+    isa      => Str,
     default  => 'API::Name (Perl)',
-);
-
-has apiuser => (
-    is       => 'rw',
-    isa      => STRING,
-    required => 1,
-);
-
-has apitoken => (
-    is       => 'rw',
-    isa      => STRING,
-    required => 1,
 );
 
 has version => (
     is       => 'rw',
-    isa      => INTEGER,
+    isa      => Int,
     default  => 1,
 );
 
@@ -61,13 +61,13 @@ method PREPARE ($ua, $tx, %args) {
     my $headers = $tx->req->headers;
     my $url     = $tx->req->url;
 
-    my $apiuser  = $self->apiuser;
-    my $apitoken = $self->apitoken;
+    my $user  = $self->user;
+    my $token = $self->token;
 
     # default headers
     $headers->header('Content-Type' => 'application/json');
-    $headers->header('Api-Username' => $apiuser);
-    $headers->header('Api-Token'    => $apitoken);
+    $headers->header('Api-Username' => $user);
+    $headers->header('Api-Token'    => $token);
 }
 
 method action ($method, %args) {
@@ -101,8 +101,8 @@ method resource (@segments) {
         timeout    => $self->timeout,
         user_agent => $self->user_agent,
         identifier => $self->identifier,
-        apiuser    => $self->apiuser,
-        apitoken   => $self->apitoken,
+        token      => $self->token,
+        user       => $self->user,
         version    => $self->version,
     );
 
@@ -130,8 +130,8 @@ method update (%args) {
     use API::Name;
 
     my $name = API::Name->new(
-        apiuser    => 'APIUSER',
-        apitoken   => 'APITOKEN',
+        user       => 'USER',
+        token      => 'TOKEN',
         identifier => 'APPLICATION NAME',
     );
 
@@ -310,21 +310,21 @@ represent and process the HTTP transaction.
 
 =cut
 
-=attr apitoken
+=attr token
 
-    $name->apitoken;
-    $name->apitoken('APITOKEN');
+    $name->token;
+    $name->token('TOKEN');
 
-The apitoken parameter should be set to the API token assigned to the account holder.
+The token parameter should be set to the API token assigned to the account holder.
 
 =cut
 
-=attr apiuser
+=attr user
 
-    $name->apiuser;
-    $name->apiuser('APIUSER');
+    $name->user;
+    $name->user('USER');
 
-The apiuser parameter should be set to the API apiuser assgined to the account holder.
+The user parameter should be set to the API user assgined to the account holder.
 
 =cut
 

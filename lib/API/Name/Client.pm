@@ -11,37 +11,37 @@ use Mojo::URL;
 
 has debug => (
     is       => 'rw',
-    isa      => INTEGER,
+    isa      => Int,
     default  => 0,
 );
 
 has fatal => (
     is       => 'rw',
-    isa      => INTEGER,
+    isa      => Int,
     default  => 0,
 );
 
 has retries => (
     is       => 'rw',
-    isa      => INTEGER,
+    isa      => Int,
     default  => 0,
 );
 
 has timeout => (
     is       => 'rw',
-    isa      => INTEGER,
+    isa      => Int,
     default  => 10,
 );
 
 has url => (
     is       => 'ro',
-    isa      => URL,
+    isa      => InstanceOf['Mojo::URL'],
     default  => fun { Mojo::URL->new("https://www.name.com") },
 );
 
 has user_agent => (
     is       => 'ro',
-    isa      => USERAGENT,
+    isa      => InstanceOf['Mojo::UserAgent'],
     default  => fun { Mojo::UserAgent->new },
 );
 
@@ -109,7 +109,7 @@ around [@methods] => fun ($orig, $self, %args) {
     return $res->json;
 };
 
-method DELETE (STRING :$path = '', HASH :$data = {}, HASH :$query = {}) {
+method DELETE (Str :$path = '', HashRef :$data = {}, HashRef :$query = {}) {
     my $ua  = $self->user_agent;
     my $url = $self->url->clone;
 
@@ -123,7 +123,7 @@ fun DESTROY {
     ; # Protect subclasses using AUTOLOAD
 }
 
-method GET (STRING :$path = '', HASH :$data = {}, HASH :$query = {}) {
+method GET (Str :$path = '', HashRef :$data = {}, HashRef :$query = {}) {
     my $ua  = $self->user_agent;
     my $url = $self->url->clone;
 
@@ -133,7 +133,7 @@ method GET (STRING :$path = '', HASH :$data = {}, HASH :$query = {}) {
     return $ua->get($url, ({}, keys(%$data) ? (json => $data) : ()));
 }
 
-method HEAD (STRING :$path = '', HASH :$data = {}, HASH :$query = {}) {
+method HEAD (Str :$path = '', HashRef :$data = {}, HashRef :$query = {}) {
     my $url = $self->url->clone;
     my $ua  = $self->user_agent;
 
@@ -143,7 +143,7 @@ method HEAD (STRING :$path = '', HASH :$data = {}, HASH :$query = {}) {
     return $ua->head($url, ({}, keys(%$data) ? (json => $data) : ()));
 }
 
-method OPTIONS (STRING :$path = '', HASH :$data = {}, HASH :$query = {}) {
+method OPTIONS (Str :$path = '', HashRef :$data = {}, HashRef :$query = {}) {
     my $url = $self->url->clone;
     my $ua  = $self->user_agent;
 
@@ -153,7 +153,7 @@ method OPTIONS (STRING :$path = '', HASH :$data = {}, HASH :$query = {}) {
     return $ua->options($url, ({}, keys(%$data) ? (json => $data) : ()));
 }
 
-method PATCH (STRING :$path = '', HASH :$data = {}, HASH :$query = {}) {
+method PATCH (Str :$path = '', HashRef :$data = {}, HashRef :$query = {}) {
     my $url = $self->url->clone;
     my $ua  = $self->user_agent;
 
@@ -163,7 +163,7 @@ method PATCH (STRING :$path = '', HASH :$data = {}, HASH :$query = {}) {
     return $ua->patch($url, ({}, keys(%$data) ? (json => $data) : ()));
 }
 
-method POST (STRING :$path = '', HASH :$data = {}, HASH :$query = {}) {
+method POST (Str :$path = '', HashRef :$data = {}, HashRef :$query = {}) {
     my $url = $self->url->clone;
     my $ua  = $self->user_agent;
 
@@ -173,7 +173,7 @@ method POST (STRING :$path = '', HASH :$data = {}, HASH :$query = {}) {
     return $ua->post($url, ({}, keys(%$data) ? (json => $data) : ()));
 }
 
-method PUT (STRING :$path = '', HASH :$data = {}, HASH :$query = {}) {
+method PUT (Str :$path = '', HashRef :$data = {}, HashRef :$query = {}) {
     my $url = $self->url->clone;
     my $ua  = $self->user_agent;
 
