@@ -24,7 +24,7 @@ my %WriteMakefileArgs = (
     "Import::Into" => "1.002004",
     "Mojolicious" => "6.08"
   },
-  "VERSION" => "0.03",
+  "VERSION" => "0.04",
   "test" => {
     "TESTS" => "t/*.t"
   }
