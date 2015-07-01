@@ -1,6 +1,7 @@
 Changelog for API-Name
 
-0.03 2015-07-01T15:37:00
+0.03 2015-07-01T16:03:43
+ - Refactored dependencies.
  - Initial commit.
 
 0.02 2015-05-22T12:54:56
