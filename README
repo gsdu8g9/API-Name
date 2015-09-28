@@ -4,7 +4,7 @@ NAME
 
 VERSION
 
-    version 0.04
+    version 0.05
 
 SYNOPSIS
 
@@ -75,7 +75,7 @@ ATTRIBUTES
         $name->fatal(1);
 
     The fatal attribute if true promotes 4xx and 5xx server response codes
-    to exceptions, a API::Name::Exception object.
+    to exceptions, a API::Client::Exception object.
 
  retries
 

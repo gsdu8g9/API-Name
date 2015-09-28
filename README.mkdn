@@ -6,7 +6,7 @@ API::Name - Name.com API Client
 
 # VERSION
 
-version 0.04
+version 0.05
 
 # SYNOPSIS
 
@@ -76,7 +76,7 @@ The debug attribute if true prints HTTP requests and responses to standard out.
     $name->fatal(1);
 
 The fatal attribute if true promotes 4xx and 5xx server response codes to
-exceptions, a [API::Name::Exception](https://metacpan.org/pod/API::Name::Exception) object.
+exceptions, a [API::Client::Exception](https://metacpan.org/pod/API::Client::Exception) object.
 
 ## retries
 
