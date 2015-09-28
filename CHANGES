@@ -1,6 +1,7 @@
 Changelog for API-Name
 
-0.04 2015-09-28T03:47:24
+0.04 2015-09-28T04:06:54
+ - Updated build.
  - Refactored to derive from API::Client.
  - Updated dist.ini.
 
