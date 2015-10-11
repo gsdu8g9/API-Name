@@ -18,12 +18,11 @@ my %WriteMakefileArgs = (
   "MIN_PERL_VERSION" => "5.014000",
   "NAME" => "API::Name",
   "PREREQ_PM" => {
-    "API::Client" => "0.01",
-    "Data::Object" => "0.55",
-    "Mojolicious" => "6.22",
-    "namespace::autoclean" => "0.27"
+    "API::Client" => "0.03",
+    "Data::Object" => "0.57",
+    "Mojolicious" => "6.22"
   },
-  "VERSION" => "0.05",
+  "VERSION" => "0.06",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -31,11 +30,10 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
-  "API::Client" => "0.01",
-  "Data::Object" => "0.55",
+  "API::Client" => "0.03",
+  "Data::Object" => "0.57",
   "ExtUtils::MakeMaker" => 0,
-  "Mojolicious" => "6.22",
-  "namespace::autoclean" => "0.27"
+  "Mojolicious" => "6.22"
 );
 
 
