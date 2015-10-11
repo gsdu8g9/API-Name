@@ -1,14 +1,12 @@
 # ABSTRACT: Name.com API Client
 package API::Name;
 
-use namespace::autoclean -except => 'has';
-
 use Data::Object::Class;
-use Data::Object::Class::Syntax;
 use Data::Object::Signatures;
 
-use Data::Object qw(load);
-use Data::Object::Library qw(Str);
+use Data::Object::Library qw(
+    Str
+);
 
 extends 'API::Client';
 
@@ -18,23 +16,39 @@ our $DEFAULT_URL = "https://www.name.com";
 
 # ATTRIBUTES
 
-has user  => rw;
-has token => rw;
+has user => (
+    is       => 'rw',
+    isa      => Str,
+    required => 1,
+);
 
-# CONSTRAINTS
-
-req user  => Str;
-req token => Str;
+has token => (
+    is       => 'rw',
+    isa      => Str,
+    required => 1,
+);
 
 # DEFAULTS
 
-def identifier => 'API::Name (Perl)';
-def url        => method { load('Mojo::URL')->new($DEFAULT_URL) };
-def version    => 1;
+has '+identifier' => (
+    default  => 'API::Name (Perl)',
+    required => 0,
+);
+
+has '+url' => (
+    default  => $DEFAULT_URL,
+    required => 0,
+);
+
+has '+version' => (
+    default  => 1,
+    required => 0,
+);
 
 # CONSTRUCTION
 
 after BUILD => method {
+
     my $identifier = $self->identifier;
     my $version    = $self->version;
     my $agent      = $self->user_agent;
@@ -46,11 +60,13 @@ after BUILD => method {
     $url->path("/api");
 
     return $self;
+
 };
 
 # METHODS
 
 method PREPARE ($ua, $tx, %args) {
+
     my $headers = $tx->req->headers;
     my $url     = $tx->req->url;
 
@@ -61,9 +77,11 @@ method PREPARE ($ua, $tx, %args) {
     $headers->header('Content-Type' => 'application/json');
     $headers->header('Api-Username' => $user);
     $headers->header('Api-Token'    => $token);
+
 }
 
 method resource (@segments) {
+
     # build new resource instance
     my $instance = __PACKAGE__->new(
         debug      => $self->debug,
@@ -85,6 +103,7 @@ method resource (@segments) {
 
     # return resource instance
     return $instance;
+
 }
 
 1;
